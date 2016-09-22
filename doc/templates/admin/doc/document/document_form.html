@@ -1,0 +1,139 @@
+{% extends "admin/account/page.html" %}{% load i18n staticfiles %}
+{% block title %}
+    {% if object %}
+        {% trans "Edit Document" %}
+    {% else %}
+        {% trans "Add a Document" %}
+    {% endif %}
+{% endblock title %}
+
+{% block toolbar %}
+    <span class="toolbar__title">{% trans "Documents" %}</span>
+{% endblock toolbar %}
+
+{% block header_scripts %}
+    <link rel="stylesheet" type="text/css" href="{% static "trix/trix.css" %}">
+    <script type="text/javascript" src="{% static "trix/trix.js" %}"></script>
+{% endblock header_scripts %}
+
+{% block content %}
+<div class="[ content__inner  content__inner--center ]">
+    <p class="breadcrumb">
+        <a href="{% url 'doc-admin:document-list' %}">{% trans "Document" %}</a>
+        &nbsp;<span class="fa fa-angle-right"></span>&nbsp;
+        {% if object %}
+            <a href="{% url 'doc-admin:document-detail' object.id %}">{{object}}</a>
+            &nbsp;<span class="fa fa-angle-right"></span>&nbsp;
+            {% trans "Edit Document" %}
+        {% else %}
+            {% trans "Add a Document" %}
+        {% endif %}
+    </p>
+</div>
+<form action="" method="post" class="form" enctype="multipart/form-data">
+{% csrf_token %}
+{% if form.non_field_errors %}
+    <div class="content__inner content__inner--center">
+        <div class="alert alert--error">
+        {% for error in form.non_field_errors %}
+            {{error}}<br>
+        {% endfor %}
+        </div>
+    </div>
+{% endif %}
+{% if form.errors %}
+    <div class="content__inner content__inner--center">
+        <div class="alert alert--error">
+        {% for field in form %}
+            {% if field.errors %}
+                {% for error in field.errors %}
+                    {{error}}<br>
+                {% endfor %}
+            {% endif %}
+        {% endfor %}
+        </div>
+    </div>
+{% endif %}
+<div class="[ content__inner content__inner--center ] [ box box--padded box--bordered ]">
+    <fieldset>
+        <legend>{% trans "Details" %}</legend>
+        <div class="grid">
+            <div class="grid__span-2">
+                <span class="form__label--inline">
+                    {% trans "Title" %}
+                </span>
+            </div>
+            <div class="grid__span-8">
+                {% with form.title as field %}
+                    {% include "admin/includes/text-field.html" %}
+                {% endwith %}
+            </div>
+        </div>
+        <div class="grid">
+            <div class="grid__span-2">
+                <span class="form__label--inline">
+                    {% trans "Slug" %}
+                </span>
+            </div>
+            <div class="grid__span-4">
+                {% with form.slug as field %}
+                    {% include "admin/includes/text-field.html" %}
+                {% endwith %}
+            </div>
+        </div>
+    </fieldset>
+</div>
+<div class="[ content__inner content__inner--center ] [ box box--padded box--bordered ]">
+    <fieldset>
+        <legend>{% trans "Body" %}</legend>
+        <div class="grid">
+            <div class="grid__span-12">
+                {% with form.body as field %}
+                <trix-editor input="id_body"></trix-editor>
+                {% include "admin/includes/text-field.html" %}
+                {% endwith %}
+            </div>
+        </div>
+    </fieldset>
+</div>
+<div class="[ content__inner content__inner--center ] [ box box--padded box--bordered ]">
+    <fieldset>
+        <legend>{% trans "Access" %}</legend>
+        <div class="grid">
+            <div class="grid__span-6">
+                {% with form.is_private as field %}
+                    {% include "admin/includes/checkbox-field.html" %}
+                {% endwith %}
+            </div>
+        </div>
+    </fieldset>
+</div>
+<div class="content__inner content__inner--center">
+    <button type="submit" class="btn btn--primary">
+        {% trans "Save" %}
+    </button>
+</div>
+</form>
+{% endblock content %}
+
+{% block footer_scripts %}
+{% if not object %}
+<script type="text/javascript">
+
+    function slugify(text){
+        return text.toString().toLowerCase()
+            .replace(/\s+/g, '-')           // Replace spaces with -
+            .replace(/[^\w\-]+/g, '')       // Remove all non-word chars
+            .replace(/\-\-+/g, '-')         // Replace multiple - with single -
+            .replace(/^-+/, '')             // Trim - from start of text
+            .replace(/-+$/, '');            // Trim - from end of text
+    }
+
+    var titleInput = document.getElementById('id_title')
+    var slugInput = document.getElementById('id_slug')
+    titleInput.addEventListener('keyup', function(e){
+        slugInput.value = slugify(e.target.value);
+    })
+</script>
+{% endif %}
+{% endblock footer_scripts %}
