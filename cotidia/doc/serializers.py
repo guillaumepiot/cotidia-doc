@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from doc.models import Document
+from cotidia.doc.models import Document
 
 
 class DocumentSerializer(serializers.ModelSerializer):

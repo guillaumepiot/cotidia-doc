@@ -1,8 +1,8 @@
 from rest_framework import generics
 from rest_framework import permissions
 
-from doc.serializers import DocumentSerializer
-from doc.models import Document
+from cotidia.doc.serializers import DocumentSerializer
+from cotidia.doc.models import Document
 
 
 class DocumentMixin(object):

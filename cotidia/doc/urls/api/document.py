@@ -1,6 +1,6 @@
 from django.conf.urls import url
 
-from doc.views.api.document import (
+from cotidia.doc.views.api.document import (
     DocumentRetrieve,
     DocumentList
 )

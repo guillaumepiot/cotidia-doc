@@ -1,1 +1,1 @@
-from doc.urls.admin.document import *
+from cotidia.doc.urls.admin.document import *

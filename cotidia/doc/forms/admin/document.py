@@ -1,6 +1,6 @@
 from django import forms
 
-from doc.models import Document
+from cotidia.doc.models import Document
 
 
 class DocumentAddForm(forms.ModelForm):

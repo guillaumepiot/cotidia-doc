@@ -3,9 +3,9 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.core.urlresolvers import reverse
 from django.contrib import messages
 
-from account.utils import StaffPermissionRequiredMixin
-from doc.models import Document
-from doc.forms.admin.document import (
+from cotidia.account.utils import StaffPermissionRequiredMixin
+from cotidia.doc.models import Document
+from cotidia.doc.forms.admin.document import (
     DocumentAddForm,
     DocumentUpdateForm)
 

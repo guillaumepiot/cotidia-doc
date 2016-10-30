@@ -1,6 +1,6 @@
 from django.conf.urls import url
 
-from doc.views.admin.document import (
+from cotidia.doc.views.admin.document import (
     DocumentList,
     DocumentCreate,
     DocumentDetail,
