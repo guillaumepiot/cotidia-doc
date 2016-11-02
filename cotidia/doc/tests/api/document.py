@@ -1,17 +1,11 @@
-import os
-import datetime
-
 from django.core.urlresolvers import reverse
-from django.conf import settings
 
 from rest_framework import status
 from rest_framework.test import APITestCase
-from rest_framework.authtoken.models import Token
-from rest_framework.renderers import JSONRenderer
 
 from cotidia.core.utils.doc import Doc
-from cotidia.core import fixtures
-from doc.factory import DocumentFactory
+from cotidia.account import fixtures
+from cotidia.doc.factory import DocumentFactory
 
 
 class DocumentAPITests(APITestCase):

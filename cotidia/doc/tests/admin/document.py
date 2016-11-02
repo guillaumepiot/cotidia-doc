@@ -1,9 +1,9 @@
 from django.test import TestCase, Client, override_settings
 from django.core.urlresolvers import reverse
 
-from account.models import User
-from doc.models import Document
-from doc.factory import DocumentFactory
+from cotidia.account.models import User
+from cotidia.doc.models import Document
+from cotidia.doc.factory import DocumentFactory
 
 
 @override_settings(ACCOUNT_FORCE_ADMIN_TWO_FACTOR=False)

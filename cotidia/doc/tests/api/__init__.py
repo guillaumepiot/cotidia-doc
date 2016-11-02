@@ -1,1 +1,1 @@
-from doc.tests.api.document import *
+from cotidia.doc.tests.api.document import *
