@@ -12,8 +12,7 @@
 {% endblock toolbar %}
 
 {% block header_scripts %}
-    <link rel="stylesheet" type="text/css" href="{% static "trix/trix.css" %}">
-    <script type="text/javascript" src="{% static "trix/trix.js" %}"></script>
+    <link href="https://cdn.quilljs.com/1.1.9/quill.snow.css" rel="stylesheet">
 {% endblock header_scripts %}
 
 {% block content %}
@@ -89,7 +88,6 @@
         <div class="grid">
             <div class="grid__span-12">
                 {% with form.body as field %}
-                <trix-editor input="id_body"></trix-editor>
                 {% include "admin/includes/text-field.html" %}
                 {% endwith %}
             </div>
@@ -136,4 +134,24 @@
     })
 </script>
 {% endif %}
+<script src="//cdn.tinymce.com/4/tinymce.min.js"></script>
+<script>
+    tinymce.init({
+        selector: '#id_body',
+        height: 500,
+        menubar: false,
+        plugins: [
+            'advlist autolink lists link image charmap print preview anchor',
+            'searchreplace visualblocks code fullscreen',
+            'insertdatetime media table contextmenu paste code textcolor colorpicker'
+        ],
+        toolbar: 'undo redo | insert | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | forecolor | backcolor',
+        textcolor_map: [
+            "d50000", "Red",
+            "00abd3", "Blue",
+            "00b100", "Green",
+            "ff8a00", "Orange",
+          ]
+    });
+</script>
 {% endblock footer_scripts %}

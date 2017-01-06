@@ -22,7 +22,7 @@ class DocumentAddForm(forms.ModelForm):
 
     body = forms.CharField(
         label='',
-        widget=forms.HiddenInput,
+        widget=forms.Textarea(attrs={'class': 'form__text'}),
         required=False
         )
 
