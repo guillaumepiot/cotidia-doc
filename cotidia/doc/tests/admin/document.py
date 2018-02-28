@@ -1,5 +1,5 @@
 from django.test import TestCase, Client, override_settings
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 
 from cotidia.account.models import User
 from cotidia.doc.models import Document

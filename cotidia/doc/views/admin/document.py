@@ -1,6 +1,6 @@
 from django.views.generic import ListView, DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 from django.contrib import messages
 
 from cotidia.account.utils import StaffPermissionRequiredMixin
