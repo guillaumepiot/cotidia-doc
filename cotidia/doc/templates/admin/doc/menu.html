@@ -1,7 +1,0 @@
-{% load i18n %}
-{% if perms.doc.change_document %}
-<a href="{% url 'doc-admin:document-list' %}" class="[ menu__item ] [ menu-item ]">
-    <span class="menu-item__icon fa fa-file"></span>
-    <span class="menu-item__text">{% trans "Documents" %}</span>
-</a>
-{% endif %}
