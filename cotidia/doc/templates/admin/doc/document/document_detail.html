@@ -1,4 +1,4 @@
-{% extends "admin/account/page.html" %}{% load i18n %}
+{% extends "admin/page.html" %}{% load i18n %}
 {% block title %}
     {% trans "Document details" %}
 {% endblock title %}
@@ -14,7 +14,7 @@
     <span class="toolbar__title">{% trans "Documents" %}</span>
 {% endblock toolbar %}
 
-{% block content %}
+{% block page_content %}
 <div class="[ content__inner content__inner--center ]">
     <p class="breadcrumb">
         <a href="{% url 'doc-admin:document-list' %}">{% trans "Document" %}</a>
@@ -53,4 +53,4 @@
     </a>
     {% endif %}
 </div>
-{% endblock content %}
+{% endblock %}

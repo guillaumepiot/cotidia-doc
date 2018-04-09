@@ -1,4 +1,4 @@
-{% extends "admin/account/page.html" %}{% load i18n staticfiles %}
+{% extends "admin/page.html" %}{% load i18n staticfiles %}
 {% block title %}
     {% if object %}
         {% trans "Edit Document" %}
@@ -12,10 +12,11 @@
 {% endblock toolbar %}
 
 {% block header_scripts %}
+    {{block.super}}
     <link href="https://cdn.quilljs.com/1.1.9/quill.snow.css" rel="stylesheet">
 {% endblock header_scripts %}
 
-{% block content %}
+{% block page_content %}
 <div class="[ content__inner  content__inner--center ]">
     <p class="breadcrumb">
         <a href="{% url 'doc-admin:document-list' %}">{% trans "Document" %}</a>
@@ -64,7 +65,7 @@
             </div>
             <div class="grid__span-8">
                 {% with form.title as field %}
-                    {% include "admin/includes/text-field.html" %}
+                    {% include "admin/generic/form/field_as_div.html" %}
                 {% endwith %}
             </div>
         </div>
@@ -76,7 +77,7 @@
             </div>
             <div class="grid__span-4">
                 {% with form.slug as field %}
-                    {% include "admin/includes/text-field.html" %}
+                    {% include "admin/generic/form/field_as_div.html" %}
                 {% endwith %}
             </div>
         </div>
@@ -88,7 +89,7 @@
         <div class="grid">
             <div class="grid__span-12">
                 {% with form.body as field %}
-                {% include "admin/includes/text-field.html" %}
+                {% include "admin/generic/form/field_as_div.html" %}
                 {% endwith %}
             </div>
         </div>
@@ -100,7 +101,7 @@
         <div class="grid">
             <div class="grid__span-6">
                 {% with form.is_private as field %}
-                    {% include "admin/includes/checkbox-field.html" %}
+                    {% include "admin/generic/form/field_as_div.html" %}
                 {% endwith %}
             </div>
         </div>
@@ -112,7 +113,7 @@
     </button>
 </div>
 </form>
-{% endblock content %}
+{% endblock %}
 
 {% block footer_scripts %}
 {% if not object %}

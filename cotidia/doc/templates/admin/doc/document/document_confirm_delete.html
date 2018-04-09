@@ -1,4 +1,4 @@
-{% extends "admin/account/page.html" %}{% load i18n %}
+{% extends "admin/page.html" %}{% load i18n %}
 {% block title %}
     {% trans "Delete Document" %}
 {% endblock title %}
@@ -7,7 +7,7 @@
     <span class="toolbar__title">{% trans "Documents" %}</span>
 {% endblock toolbar %}
 
-{% block content %}
+{% block page_content %}
 <div class="[ content__inner ]">
     <p class="breadcrumb">
         <a href="{% url 'doc-admin:document-list' %}">
@@ -41,4 +41,4 @@
         </a>
     </form>
 </div>
-{% endblock content %}
+{% endblock %}
