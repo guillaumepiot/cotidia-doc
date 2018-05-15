@@ -8,7 +8,7 @@ from cotidia.doc.models import Document
 class DocumentMixin(object):
 
     def get_queryset(self):
-        if self.request.user.is_authenticated():
+        if self.request.user.is_authenticated:
             return Document.objects.filter()
         else:
             # Return only public document if the user is not authenticated.
