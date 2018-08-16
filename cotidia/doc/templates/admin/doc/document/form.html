@@ -1,0 +1,42 @@
+{% extends "admin/generic/page/form.html" %}
+{% block footer_scripts %}
+{% if not object %}
+<script type="text/javascript">
+
+    function slugify(text){
+        return text.toString().toLowerCase()
+            .replace(/\s+/g, '-')           // Replace spaces with -
+            .replace(/[^\w\-]+/g, '')       // Remove all non-word chars
+            .replace(/\-\-+/g, '-')         // Replace multiple - with single -
+            .replace(/^-+/, '')             // Trim - from start of text
+            .replace(/-+$/, '');            // Trim - from end of text
+    }
+
+    var titleInput = document.getElementById('id_title')
+    var slugInput = document.getElementById('id_slug')
+    titleInput.addEventListener('keyup', function(e){
+        slugInput.value = slugify(e.target.value);
+    });
+</script>
+{% endif %}
+<script src="//cdn.tinymce.com/4/tinymce.min.js"></script>
+<script>
+    tinymce.init({
+        selector: '#id_body',
+        height: 500,
+        menubar: false,
+        plugins: [
+            'advlist autolink lists link image charmap print preview anchor',
+            'searchreplace visualblocks code fullscreen',
+            'insertdatetime media table contextmenu paste code textcolor colorpicker'
+        ],
+        toolbar: 'undo redo | insert | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | forecolor | backcolor',
+        textcolor_map: [
+            "d50000", "Red",
+            "00abd3", "Blue",
+            "00b100", "Green",
+            "ff8a00", "Orange",
+          ]
+    });
+</script>
+{% endblock footer_scripts %}

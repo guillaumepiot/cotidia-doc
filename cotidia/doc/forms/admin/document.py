@@ -1,42 +1,36 @@
 from django import forms
 
+from betterforms.forms import BetterModelForm
+
 from cotidia.doc.models import Document
 
 
-class DocumentAddForm(forms.ModelForm):
-
-    title = forms.CharField(
-        label='',
-        max_length=255,
-        widget=forms.TextInput(attrs={'class': 'form__text'})
-        )
+class DocumentAddForm(BetterModelForm):
 
     slug = forms.CharField(
-        label='',
         max_length=255,
         widget=forms.TextInput(attrs={'class': 'form__text'}),
         help_text=(
             "This field must be unique. Only accepts lowercase letters "
             "and numbers separated with hyphens.")
-        )
-
-    body = forms.CharField(
-        label='',
-        widget=forms.Textarea(attrs={'class': 'form__text'}),
-        required=False
-        )
+    )
 
     is_private = forms.BooleanField(
-        label="Private",
+        label="Is private?",
         required=False,
         initial=True,
         help_text=(
             "Check this box if you only want admin users to access it."
-            ))
+        )
+    )
 
     class Meta:
         model = Document
         exclude = []
+        fieldsets = (
+            ('document', {'fields': (('title', 'slug'), 'body'), 'legend': 'Document'}),
+            ('access', {'fields': ('is_private',), 'legend': 'Access'}),
+        )
 
 
 class DocumentUpdateForm(DocumentAddForm):
